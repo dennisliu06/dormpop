@@ -11,7 +11,9 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        'text-color': "#333333"
+        'text-color': "#333333",
+        'husky-red': '#D41B2C',
+        
       },
     },
   },
