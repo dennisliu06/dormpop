@@ -20,7 +20,9 @@ export default function About() {
             </code>
             .
           </li>
-          <li>Hello</li>
+          <li>
+            hello
+          </li>
         </ol>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
