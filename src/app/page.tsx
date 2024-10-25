@@ -1,4 +1,4 @@
-import HomeBanner from "@/(components)/homeBanner/page";
+import HomeBanner from "@/components/homeBanner/page";
 
 export default function Home() {
   return (
