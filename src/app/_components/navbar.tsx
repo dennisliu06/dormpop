@@ -15,7 +15,7 @@ export default function NavBar() {
             ></Image>
             <h1> DormPop </h1>
           </div>
-          <ul className="p-10 flex items-center">
+          <ul className="p-10 flex items-center ">
             <a href=""> About </a>
             <a href=""> Contact </a>
             <a href=""> Home </a>
