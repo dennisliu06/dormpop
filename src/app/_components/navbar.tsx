@@ -17,9 +17,9 @@ export default function NavBar() {
           </div>
           <div>
             <input
-              className=" font-semibold text-center pr-5  p-1 rounded-full border-4 border-black focus:outline-none "
+              className=" font-semibold w-[500px] pl-3 p-1 rounded-full border-4 border-black focus:outline-none "
               type="text"
-              placeholder="  Search..."
+              placeholder="Search..."
 
             />
           </div>
