@@ -4,18 +4,26 @@ export default function NavBar() {
 
   return (
     <>
-      <header className="p-10 place-content-center bg-husky-red ">
-        <nav className=" flex justify-items-end ">
-          <div className="flex items-center">
+      <header className=" h-20  bg-husky-red ">
+        <nav className=" flex justify-between items-center  ">
+          <div className="flex items-center   ">
             <Image
               src="/Northeastern_Huskies_.svg.png"
               alt=" Northeastern Logo "
               width={90}
               height={50}
             ></Image>
-            <h1> DormPop </h1>
+            <h1 className= "font-bold text-white"> DormPop </h1>
           </div>
-          <ul className="p-10 flex items-center ">
+          <div>
+            <input
+              className=" font-semibold text-center pr-5  p-1 rounded-full border-4 border-black focus:outline-none "
+              type="text"
+              placeholder="  Search..."
+
+            />
+          </div>
+          <ul className="p-7 space-x-5 text-white ">
             <a href=""> About </a>
             <a href=""> Contact </a>
             <a href=""> Home </a>
