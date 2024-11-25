@@ -1,5 +1,6 @@
 import Image from "next/image";
 import neuBackground from "/public/neu-snow-hero.png";
+import {Button} from "@nextui-org/button";
 
 export default function HomeBanner() {
   return (
@@ -34,9 +35,9 @@ export default function HomeBanner() {
             tellus, luctus nec ullamcorper mattis.
           </p>
           <div className="p-2"></div>
-          <button className="bg-husky-red text-white font-bold py-8 px-16 rounded-sm hover:bg-red-700 transition">
+          <Button disableRipple className="bg-husky-red text-white font-bold py-8 px-16 rounded-sm ">
             SELL NOW
-          </button>
+          </Button>
         </div>
       </div>
     </div>

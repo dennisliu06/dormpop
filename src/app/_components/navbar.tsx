@@ -1,7 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function NavBar() {
-
   return (
     <>
       <header className=" h-20  bg-husky-red ">
@@ -14,7 +14,7 @@ export default function NavBar() {
               height={50}
             ></Image>
             <h1 className="font-bold text-white text-xl">
-              <a href=""> DormPop </a>
+              <Link href="/"> DormPop </Link>
             </h1>
           </div>
           <div>
@@ -25,10 +25,18 @@ export default function NavBar() {
             />
           </div>
           <ul className="p-7 space-x-5 text-white text-lg">
-            <a href="" className="hover:underline"> Wishlist </a>
-            <a href="" className="hover:underline"> Cart </a>
-            <a href="" className="hover:underline"> Log In </a>
-            <a href="" className="hover:underline"> Sign up </a>
+            <Link href="/wishlist" className="hover:underline">
+              Wishlist
+            </Link>
+            <Link href="/cart" className="hover:underline">
+              Cart
+            </Link>
+            <Link href="/login" className="hover:underline">
+              Log In
+            </Link>
+            <Link href="/signup" className="hover:underline">
+              Sign Up
+            </Link>
           </ul>
         </nav>
       </header>
