@@ -37,7 +37,7 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >
-        <NavBar />
+        <NavBar /> 
         <Providers>{children}</Providers>
       </body>
     </html>
