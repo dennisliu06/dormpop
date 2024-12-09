@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useTransition } from "react";
 import * as z from "zod";
 
 import { Button, Input, Spacer } from "@nextui-org/react";
@@ -11,8 +11,14 @@ import { EyeSlashFilledIcon } from "@/app/_components/EyeSlashFilledIcon";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema } from "@/schemas"
+import { login } from "../../../../actions/login";
 
 export default function LoginForm() {
+  const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
+
+  const [isPending, startTransition] = useTransition()
+
   const [isVisible, setIsVisible] = React.useState(false);
 
   const toggleVisibility = () => setIsVisible(!isVisible);
@@ -25,8 +31,18 @@ export default function LoginForm() {
     resolver: zodResolver(LoginSchema),
   });
 
-  const onSubmit = (data: z.infer<typeof LoginSchema>) => {
-    console.log(data); 
+  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+    setError("");
+    setSuccess("");
+
+    startTransition(() => {
+        login(values)
+            .then((data) => {
+                setError(data.error);
+                setSuccess(data.success);
+            })
+    })
+    
   };
 
   return (
@@ -46,7 +62,7 @@ export default function LoginForm() {
             label="Email"
             labelPlacement="inside"
             placeholder="example@northeastern.edu"
-            
+            isDisabled={isPending}
             type="email"
             required
             {...register("email")}
@@ -65,6 +81,7 @@ export default function LoginForm() {
             placeholder="Enter your password"
             fullWidth
             size="lg"
+            isDisabled={isPending}
             endContent={
               <button
                 className="focus:outline-none"
@@ -86,7 +103,12 @@ export default function LoginForm() {
           />
         </div>
         <Spacer y={8} />
-        <Button type="submit" className="w-full">
+
+        <Button 
+            type="submit"
+            isDisabled={isPending}
+            className="w-full"
+        >
           Login
         </Button>
       </form>
