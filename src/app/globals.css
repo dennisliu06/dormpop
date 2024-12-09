@@ -6,6 +6,7 @@
   --background: #ffffff;
   --foreground: #E8E8E8;
   --defaulttext: #333333;
+  --font-poppins: 'Poppins', sans-serif;
 }
 
 body {
