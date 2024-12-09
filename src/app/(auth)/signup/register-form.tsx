@@ -11,10 +11,10 @@ import { Alert } from "@nextui-org/react";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LoginSchema } from "@/schemas";
-import { login } from "../../../../actions/login";
+import { RegisterSchema } from "@/schemas";
+import { registerUser } from "../../../../actions/register";
 
-export default function LoginForm() {
+export default function RegisterForm() {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
 
@@ -28,16 +28,16 @@ export default function LoginForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<z.infer<typeof LoginSchema>>({
-    resolver: zodResolver(LoginSchema),
+  } = useForm<z.infer<typeof RegisterSchema>>({
+    resolver: zodResolver(RegisterSchema),
   });
 
-  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+  const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
     setError("");
     setSuccess("");
 
     startTransition(() => {
-      login(values).then((data) => {
+      registerUser(values).then((data) => {
         setError(data.error);
         setSuccess(data.success);
       });
@@ -46,11 +46,73 @@ export default function LoginForm() {
 
   return (
     <CardWrapper
-      headerLabel="Welcome back"
-      backButtonLabel="Don't have an account?"
-      backButtonHref="/signup"
+      headerLabel="Create an account"
+      backButtonLabel="Already have an account?"
+      backButtonHref="/login"
     >
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-y-8">
+        <div className="flex flex-row gap-x-4">
+          <div className="w-full">
+            <Input
+              isClearable
+              variant="bordered"
+              fullWidth
+              color="default"
+              size="lg"
+              label="First name"
+              labelPlacement="inside"
+              placeholder="John"
+              isDisabled={isPending}
+              required
+              {...register("firstname")}
+              isInvalid={!!errors.firstname}
+              errorMessage={errors.firstname?.message as React.ReactNode}
+              classNames={{
+                label: "text-red-500",
+              }}
+            />
+          </div>
+          <div className="w-full">
+            <Input
+              isClearable
+              variant="bordered"
+              fullWidth
+              color="default"
+              size="lg"
+              label="Last name"
+              labelPlacement="inside"
+              placeholder="Doe"
+              isDisabled={isPending}
+              required
+              {...register("lastname")}
+              isInvalid={!!errors.lastname}
+              errorMessage={errors.lastname?.message as React.ReactNode}
+              classNames={{
+                label: "text-red-500",
+              }}
+            />
+          </div>
+        </div>
+        <div>
+          <Input
+            isClearable
+            variant="bordered"
+            fullWidth
+            color="default"
+            size="lg"
+            label="Username"
+            labelPlacement="inside"
+            placeholder="johndoe123"
+            isDisabled={isPending}
+            required
+            {...register("username")}
+            isInvalid={!!errors.username}
+            errorMessage={errors.username?.message as React.ReactNode}
+            classNames={{
+              label: "text-red-500",
+            }}
+          />
+        </div>
         <div>
           <Input
             isClearable
@@ -100,20 +162,12 @@ export default function LoginForm() {
             errorMessage={errors.password?.message as React.ReactNode}
           />
         </div>
-        {error && <Alert 
-            title={error}
-            color="danger" 
-            isVisible 
-        />}
+        {error && <Alert title={error} color="danger" isVisible />}
         {!error && success && (
-          <Alert 
-            title={success} 
-            color="success" 
-            isVisible 
-          />
+          <Alert title={success} color="success" isVisible />
         )}
         <Button type="submit" isDisabled={isPending} className="w-full">
-          Login
+          Create an account
         </Button>
       </form>
     </CardWrapper>
