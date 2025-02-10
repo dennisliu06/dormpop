@@ -28,6 +28,16 @@ export const RegisterSchema = z.object({
       message:
         "Username can only include letters, numbers, dots, and underscores, without consecutive or trailing special characters.",
     }),
-  firstname: z.string().min(1, { message: "First name is required" }),
-  lastname: z.string().min(1, { message: "Last name is required" }),
+  firstname: z
+    .string()
+    .min(1, { message: "First name is required" })
+    .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/, {
+      message: "Invalid first name."
+    }),
+  lastname: z
+    .string()
+    .min(1, { message: "Last name is required" })
+    .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]+$/, {
+      message: "Invalid last name."
+    }),
 });

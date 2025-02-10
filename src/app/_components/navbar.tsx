@@ -1,11 +1,14 @@
+import { auth } from "@/auth";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function NavBar() {
+export default async function NavBar() {
+  const session = await auth();
+
   return (
     <>
       <header className=" h-20  bg-husky-red ">
-        <nav className=" flex justify-between items-center  ">
+        <nav className="flex justify-between items-center  ">
           <div className="flex items-center   ">
             <Image
               src="/Northeastern_Huskies_.svg.png"
@@ -24,19 +27,49 @@ export default function NavBar() {
               placeholder="Search..."
             />
           </div>
-          <ul className="p-7 space-x-5 text-white text-lg">
+          <ul className="flex items-center p-7 space-x-5 text-white text-lg">
             <Link href="/wishlist" className="hover:underline">
               Wishlist
             </Link>
             <Link href="/cart" className="hover:underline">
               Cart
             </Link>
-            <Link href="/login" className="hover:underline">
-              Log In
-            </Link>
-            <Link href="/signup" className="hover:underline">
-              Sign Up
-            </Link>
+            {!session ? (
+              <>
+                <Link href="/login" className="hover:underline">
+                  Log In
+                </Link>
+                <Link href="/signup" className="hover:underline">
+                  Sign Up
+                </Link>
+              </>
+            ) : (
+              <>
+                {session.user.image ? (
+                  <>
+                    <Image
+                      src={session.user.image}
+                      width={30}
+                      height={30}
+                      alt="profile"
+                      className="rounded-full"
+                    />
+                  </>
+                ) : (
+                  <>
+                    <div>
+                      <Image
+                        src="/default-avatar.jpg"
+                        width={30}
+                        height={30}
+                        alt="profile"
+                        className="rounded-full"
+                      />
+                    </div>
+                  </>
+                )}
+              </>
+            )}
           </ul>
         </nav>
       </header>

@@ -4,7 +4,8 @@ import bcrypt from "bcryptjs";
 
 import { db } from "../lib/db";
 import { RegisterSchema } from "@/schemas";
-import { getUserByEmail } from "../data/user";
+import { getUserByEmail, getUserByUsername, getUserByUsernameEmail } from "../data/user";
+import { generateVerificationToken } from "../lib/tokens";
 
 
 export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
@@ -17,10 +18,17 @@ export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
     const { email, password, username, firstname, lastname} = validatedFields.data;
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const existingUser = await getUserByEmail(email);
+    const existingUser = await getUserByUsernameEmail(username, email);
 
-    if (existingUser){
-        return { error: "Email already in use!"};
+    if (existingUser) {
+        console.log(existingUser.username);
+        if (existingUser.username === username) {
+            return { error: "Username already exists!" }
+        }
+        if (existingUser.email === email) {
+            return { error: "Email already exists!" }
+        }
+        return { error: "Account already exists!" }
     }
 
     await db.user.create({
@@ -31,10 +39,10 @@ export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
             email,
             password: hashedPassword,
         }
-    })
+    }) 
 
-    // TODO: Send verification email
+    //const verificationToken = await generateVerificationToken(email)
 
-    return { success: "User created!" }
+    return { success: "Account created!" }
 };
 

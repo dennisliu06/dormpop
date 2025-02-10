@@ -38,10 +38,8 @@ export default function LoginForm() {
 
     startTransition(() => {
       login(values).then((data) => {
-        if(!!data){
-            setError(data.error);
-            setSuccess(data.success);
-        }
+        setError(data?.error);
+        setSuccess(data?.success);
       });
     });
   };

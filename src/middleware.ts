@@ -32,6 +32,8 @@ export default auth((req: any) => {
         return Response.redirect(new URL("/login", nextUrl));
     } 
 
+    // TODO: Invoke middleware on the new pages of the site like product pages, shopping, etc.
+
     return;
 
 })
