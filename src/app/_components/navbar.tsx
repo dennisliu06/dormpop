@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import Image from "next/image";
 import Link from "next/link";
+import ProfilePicture from "./ProfilePicture";
 
 export default async function NavBar() {
   const session = await auth();
@@ -45,29 +46,7 @@ export default async function NavBar() {
               </>
             ) : (
               <>
-                {session.user.image ? (
-                  <>
-                    <Image
-                      src={session.user.image}
-                      width={30}
-                      height={30}
-                      alt="profile"
-                      className="rounded-full"
-                    />
-                  </>
-                ) : (
-                  <>
-                    <div>
-                      <Image
-                        src="/default-avatar.jpg"
-                        width={30}
-                        height={30}
-                        alt="profile"
-                        className="rounded-full"
-                      />
-                    </div>
-                  </>
-                )}
+                <ProfilePicture profile={session.user.image} />
               </>
             )}
           </ul>
