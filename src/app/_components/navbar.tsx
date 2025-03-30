@@ -23,7 +23,7 @@ export default async function NavBar() {
           </div>
           <div>
             <input
-              className=" font-semibold w-[500px] pl-3 p-1 rounded-full border-2 border-black focus:outline-none "
+              className=" font-semibold md:w-[500px] sm:w-[200px] pl-3 p-1 rounded-full border-2 border-black focus:outline-none "
               type="text"
               placeholder="Search..."
             />

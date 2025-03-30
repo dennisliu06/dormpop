@@ -78,7 +78,7 @@ export default function ProfilePicture({
           <MenuItem href="/hello" name="Link 1" />
           <MenuItem href="/hello" name="Link 1" />
           <MenuItem href="/hello" name="Link 1" />
-          <MenuItem href="/hello" name="Link 1" signOutButton />
+          <MenuItem href="/hello" signOutButton />
         </div>
       )}
     </div>

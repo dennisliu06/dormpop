@@ -5,8 +5,13 @@ export default async function Home(){
   const session = await auth()
 
   return (
-    <div className="bg-husky-red text-text-color">
-      <HomeBanner />
+    <div className="text-text-color">
+
+      
+
+
+
+      {/* <HomeBanner />
       {JSON.stringify(session)}
       <form action={async () => {
         "use server";
@@ -16,7 +21,7 @@ export default async function Home(){
         <button type="submit">
             Sign Out
         </button>
-      </form>
+      </form> */}
     </div>
   );
 }

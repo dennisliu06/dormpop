@@ -4,7 +4,7 @@ import { signOutAction } from "../../../actions/signout";
 
 interface MenuItemProps {
     href: string,
-    name: string,
+    name?: string,
     signOutButton? : boolean
 }
 
