@@ -74,13 +74,24 @@ enum Condition {
   @@schema("transactional")
 }
 
+enum Category {
+  Electronics
+  Furniture
+  Clothing
+  Appliances
+  Miscellaneous
+
+  @@schema("transactional")
+}
+
 model Listing {
   id          String    @id @default(cuid())
   title       String
   imageUrls   String[]
   price       Int
-  description String
+  description String?
   used        Boolean
+  category    Category
   condition   Condition
   active      Boolean
   address     String
